@@ -128,7 +128,7 @@ def main():
     # exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=decay_step, gamma=decay_gamma)
 
     #훈련
-    model, train_losses, valid_losses = train_earlystop(model, train_loader, valid_loader, criterion, optimizer, scheduler=None, num_epochs= args.epochs)
+    model, train_losses, valid_losses = train_earlystop(model, train_loader, valid_loader, criterion, optimizer, num_epochs= args.epochs)
 
     #베스트 모델 저장
     if not os.path.isdir(MODEL_DIR):
