@@ -66,14 +66,15 @@ def train_earlystop(model, train_loader, valid_loader, criterion, optimizer, sch
         
         #valid phase
         model.eval()
-        for data, target in valid_loader:
-            data = data.to(device)
-            target = target.to(device)
-            
-            output = model(data)
-            loss = criterion(output, target)
+        with torch.no_grad():
+            for data, target in valid_loader:
+                data = data.to(device)
+                target = target.to(device)
 
-            valid_losses.append(loss.item())
+                output = model(data)
+                loss = criterion(output, target)
+
+                valid_losses.append(loss.item())
 
 
         #에포크당 평균 loss
